@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimedia Exercise</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        section { margin-bottom: 50px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        video { width: 100%; border-radius: 4px; }
+        .time-label { font-weight: bold; margin-top: 10px; display: block; }
+    </style>
+</head>
+<body>
+
+    <section>
+        <h2>Audio Player</h2>
+        <audio id="audioPlayer" controls>
+            <source src="pink_panther.mp3" type="audio/mpeg">
+        </audio>
+        <span class="time-label">Current Time: <span id="audioTime">0:00</span></span>
+    </section>
+
+    <section>
+        <h2>Video Player</h2>
+        <video id="videoPlayer" controls>
+            <source src="137083-765727898_small.mp4" type="video/mp4">
+        </video>
+        <span class="time-label">Current Time: <span id="videoTime">0:00</span></span>
+    </section>
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        const video = document.getElementById('videoPlayer');
+        const audioDisplay = document.getElementById('audioTime');
+        const videoDisplay = document.getElementById('videoTime');
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            audioDisplay.textContent = formatTime(audio.currentTime);
+        });
+
+        video.addEventListener('timeupdate', () => {
+            videoDisplay.textContent = formatTime(video.currentTime);
+        });
+    </script>
+
+</body>
+</html>
