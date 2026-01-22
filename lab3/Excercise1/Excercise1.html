@@ -1,0 +1,22 @@
+<form id="registrationForm">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    
+    <select id="role">
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <div id="skillsSection" style="display:none;">
+        <input type="text" id="skills" placeholder="Expertise (comma separated)">
+    </div>
+
+    <input type="number" id="age" placeholder="Age" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <div id="passwordFeedback" class="feedback"></div>
+    
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    
+    <button type="submit" id="submitBtn">Register</button>
+</form>

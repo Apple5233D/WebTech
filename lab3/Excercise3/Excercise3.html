@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Survey Builder</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 40px; }
+        .survey-card { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .question-block { margin-bottom: 25px; padding: 15px; border-left: 5px solid #2874f0; background: #fbfbfb; }
+        .question-label { font-weight: bold; display: block; margin-bottom: 10px; color: #333; }
+        .error-msg { color: #d32f2f; font-size: 0.85em; margin-top: 5px; display: none; }
+        input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .submit-btn { background: #2874f0; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 16px; width: 100%; }
+        .submit-btn:hover { background: #1259c7; }
+        .success-page { text-align: center; color: #388e3c; }
+    </style>
+</head>
+<body>
+
+<div class="survey-card" id="surveyContainer">
+    <h2 style="color: #2874f0; text-align: center;">Feedback Survey</h2>
+    <form id="dynamicSurvey">
+        <div id="questionsArea"></div>
+        <button type="submit" class="submit-btn">Submit Response</button>
+    </form>
+</div>
+
+<script>
+
+    const surveyData = [
+        {
+            id: "q1",
+            label: "What is your Full Name?",
+            type: "text",
+            required: true,
+            limit: 30
+        },
+        {
+            id: "q2",
+            label: "Which city in India do you reside in?",
+            type: "radio",
+            options: ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Other"],
+            required: true
+        },
+        {
+            id: "q3",
+            label: "Which services have you used? (Select at least 2)",
+            type: "checkbox",
+            options: ["E-commerce", "Food Delivery", "OTT Platforms", "Online Banking"],
+            minSelection: 2
+        }
+    ];
+
+    const form = document.getElementById('dynamicSurvey');
+    const questionsArea = document.getElementById('questionsArea');
+
+
+    function generateSurvey() {
+        surveyData.forEach((q, index) => {
+            const block = document.createElement('div');
+            block.className = 'question-block';
+            block.id = `block-${q.id}`;
+
+            const label = document.createElement('label');
+            label.className = 'question-label';
+            label.innerText = `${index + 1}. ${q.label} ${q.required ? '*' : ''}`;
+            block.appendChild(label);
+
+
+            if (q.type === 'text') {
+                block.innerHTML += `<input type="text" id="${q.id}" placeholder="Type here..." maxlength="${q.limit || 100}">`;
+            } 
+            else if (q.type === 'radio' || q.type === 'checkbox') {
+                q.options.forEach(opt => {
+                    block.innerHTML += `
+                        <div style="margin: 5px 0;">
+                            <input type="${q.type}" name="${q.id}" value="${opt}"> ${opt}
+                        </div>`;
+                });
+            }
+
+
+            block.innerHTML += `<div class="error-msg" id="error-${q.id}">Please check your answer.</div>`;
+            questionsArea.appendChild(block);
+        });
+    }
+
+
+    function validateSurvey() {
+        let isAllValid = true;
+
+        surveyData.forEach(q => {
+            const errorDiv = document.getElementById(`error-${q.id}`);
+            let isValid = true;
+            let msg = "";
+
+            if (q.type === 'text') {
+                const val = document.getElementById(q.id).value.trim();
+                if (q.required && val === "") {
+                    isValid = false;
+                    msg = "This field is required.";
+                }
+            } 
+            else if (q.type === 'radio') {
+                const checked = document.querySelector(`input[name="${q.id}"]:checked`);
+                if (q.required && !checked) {
+                    isValid = false;
+                    msg = "Please select an option.";
+                }
+            } 
+            else if (q.type === 'checkbox') {
+                const checkedCount = document.querySelectorAll(`input[name="${q.id}"]:checked`).length;
+                if (q.minSelection && checkedCount < q.minSelection) {
+                    isValid = false;
+                    msg = `Please select at least ${q.minSelection} options.`;
+                }
+            }
+
+
+            if (!isValid) {
+                errorDiv.innerText = msg;
+                errorDiv.style.display = 'block';
+                isAllValid = false;
+            } else {
+                errorDiv.style.display = 'none';
+            }
+        });
+
+        return isAllValid;
+    }
+
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        if (validateSurvey()) {
+            document.getElementById('surveyContainer').innerHTML = `
+                <div class="success-page">
+                    <h2>Dhanyavad! (Thank You)</h2>
+                    <p>Your survey response has been successfully recorded.</p>
+                </div>
+            `;
+        }
+    });
+
+
+    generateSurvey();
+</script>
+</body>
+</html>

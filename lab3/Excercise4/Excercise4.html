@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Activity Monitor</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: white; padding: 20px; }
+        .dashboard { display: grid; grid-template-columns: 1fr 300px; gap: 20px; max-width: 1000px; margin: auto; }
+        .monitor-area { background: #16213e; padding: 40px; border-radius: 12px; border: 2px dashed #0f3460; text-align: center; }
+        .log-panel { background: #0f3460; padding: 15px; border-radius: 8px; height: 500px; overflow-y: auto; font-family: monospace; font-size: 12px; }
+        .log-entry { padding: 5px; border-bottom: 1px solid #16213e; color: #e94560; }
+        .warning { background: #e94560; color: white; padding: 10px; border-radius: 5px; margin-bottom: 10px; display: none; animation: blink 1s infinite; }
+        .controls { margin-top: 20px; }
+        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 4px; font-weight: bold; }
+        .btn-reset { background: #533483; color: white; }
+        .btn-export { background: #00d2ad; color: #1a1a2e; margin-left: 10px; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        input { padding: 10px; border-radius: 4px; border: none; margin-top: 10px; width: 80%; }
+    </style>
+</head>
+<body>
+
+    <div id="warningBar" class="warning">⚠️ SUSPICIOUS ACTIVITY DETECTED: Rapid clicking observed!</div>
+
+    <div class="dashboard">
+        <div class="monitor-area" id="captureZone">
+            <h2>Activity Capture Zone</h2>
+            <p>Click around, type in the box, or switch focus.</p>
+            <input type="text" id="testInput" placeholder="Type something here...">
+            <br><br>
+            <button id="targetBtn">Click Me Repeatedly</button>
+            
+            <div class="controls">
+                <button class="btn-reset" onclick="resetLogs()">Reset Log</button>
+                <button class="btn-export" onclick="exportLogs()">Export to Text</button>
+            </div>
+        </div>
+
+        <div class="log-panel" id="logDisplay">
+            <div style="color: #00d2ad;">-- System Ready: Awaiting Activity --</div>
+        </div>
+    </div>
+
+<script>
+    // 1. Data Store
+    let activityLog = [];
+    let clickCount = 0;
+    const THRESHOLD = 10; // Clicks within 5 seconds trigger a warning
+
+    const logDisplay = document.getElementById('logDisplay');
+    const warningBar = document.getElementById('warningBar');
+
+    // 2. Event Logic with Bubbling/Capturing
+    // We listen on the window to catch EVERYTHING (Global Monitoring)
+    
+    // Track Clicks (Bubbling phase)
+    window.addEventListener('click', (e) => {
+        logActivity('CLICK', `Target: ${e.target.tagName} (ID: ${e.target.id || 'None'})`);
+        
+        // Suspicious Activity Logic
+        clickCount++;
+        if (clickCount > THRESHOLD) {
+            warningBar.style.display = 'block';
+        }
+        setTimeout(() => clickCount--, 5000); // Reduce count after 5s
+    }, false);
+
+    // Track Key Presses
+    window.addEventListener('keydown', (e) => {
+        logActivity('KEYPRESS', `Key: ${e.key} code: ${e.code}`);
+    });
+
+    // Track Focus Changes (Capturing phase - focus doesn't bubble)
+    window.addEventListener('focus', (e) => {
+        logActivity('FOCUS', `Element gained focus: ${e.target.tagName}`);
+    }, true);
+
+    // 3. Dynamic DOM Updates
+    function logActivity(type, details) {
+        const timestamp = new Date().toLocaleTimeString('en-IN');
+        const entry = { timestamp, type, details };
+        
+        // Store in array
+        activityLog.push(entry);
+
+        // Update UI
+        const logItem = document.createElement('div');
+        logItem.className = 'log-entry';
+        logItem.innerHTML = `[${timestamp}] <strong>${type}</strong>: ${details}`;
+        
+        logDisplay.prepend(logItem); // Add newest on top
+    }
+
+    // 4. Reset and Export
+    function resetLogs() {
+        activityLog = [];
+        clickCount = 0;
+        logDisplay.innerHTML = '<div style="color: #00d2ad;">-- Log Cleared --</div>';
+        warningBar.style.display = 'none';
+    }
+
+    function exportLogs() {
+        if (activityLog.length === 0) {
+            alert("Nothing to export!");
+            return;
+        }
+        
+        let content = "USER ACTIVITY LOG\n=================\n";
+        activityLog.forEach(item => {
+            content += `${item.timestamp} | ${item.type} | ${item.details}\n`;
+        });
+
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `activity_log_${Date.now()}.txt`;
+        a.click();
+    }
+</script>
+</body>
+</html>
