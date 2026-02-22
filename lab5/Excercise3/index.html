@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student JSON System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Student <span>Record</span> System</h1>
+        
+        <div class="card">
+            <form id="studentForm">
+                <div class="input-row">
+                    <input type="text" id="sid" placeholder="Student ID" required>
+                    <input type="text" id="sname" placeholder="Name" required>
+                    <input type="text" id="scourse" placeholder="Course" required>
+                    <input type="number" id="smarks" placeholder="Marks" min="0" max="100" required>
+                </div>
+                <button type="submit" class="btn-save">Save Record</button>
+            </form>
+        </div>
+
+        <div id="msg" class="message"></div>
+
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Marks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentList"></tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

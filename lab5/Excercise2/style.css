@@ -1,0 +1,17 @@
+body { font-family: 'Segoe UI', sans-serif; background: #9cfbee; padding: 20px; }
+.app-container { max-width: 900px; margin: 0 auto; background: rgb(164, 249, 182); padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+h1 span { color: #8b5cf6; }
+
+.form-section { display: flex; gap: 10px; margin-bottom: 25px; }
+input { padding: 10px; border: 1px solid #ddd; border-radius: 6px; flex: 1; }
+button { padding: 10px 20px; background: #8b5cf6; color: white; border: none; border-radius: 6px; cursor: pointer; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 15px; border-bottom: 1px solid #edf2f7; }
+.status-badge { padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; }
+.available { background: #d1fae5; color: #065f46; }
+.borrowed { background: #fee2e2; color: #991b1b; }
+
+.btn-update { background: #3b82f6; margin-right: 5px; }
+.btn-delete { background: #ef4444; }
+.action-btn { color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company>
+    <employee>
+        <id>E001</id>
+        <name>Mike  Connor</name>
+        <department>Security</department>
+        <salary>75000</salary>
+    </employee>
+    <employee>
+        <id>E002</id>
+        <name>Bill Dyson</name>
+        <department>Engineering</department>
+        <salary>95000</salary>
+    </employee>
+</company>

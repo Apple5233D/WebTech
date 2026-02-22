@@ -1,0 +1,23 @@
+[
+    {
+        "id": "P001",
+        "name": "Wireless Keyboard",
+        "category": "Electronics",
+        "price": 37.99,
+        "stock": 17
+    },
+    {
+        "id": "P002",
+        "name": " Mouse",
+        "category": "Electronics",
+        "price": 19.50,
+        "stock": 31
+    },
+    {
+        "id": "P003",
+        "name": "Table",
+        "category": "Furniture",
+        "price": 150.00,
+        "stock": 10
+    }
+]

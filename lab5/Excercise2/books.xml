@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book>
+        <id>B001</id>
+        <title>The Great Swrod</title>
+        <author>F. Ben Scott Fitzgerald</author>
+        <status>Available</status>
+    </book>
+    <book>
+        <id>B002</id>
+        <title>Chronicals of narnia </title>
+        <author>Edward Orwell</author>
+        <status>Borrowed</status>
+    </book>
+</library>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XML Employee Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee <span>XML</span> Manager</h1>
+        
+        <div class="card">
+            <form id="employeeForm">
+                <input type="text" id="empId" placeholder="ID (e.g. E003)" required>
+                <input type="text" id="empName" placeholder="Name" required>
+                <input type="text" id="empDept" placeholder="Dept" required>
+                <input type="number" id="empSalary" placeholder="Salary" required>
+                <button type="submit" class="btn-add">Add Employee</button>
+            </form>
+        </div>
+
+        <div id="status" class="status-msg"></div>
+
+        <div class="card">
+            <table id="empTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Dept</th>
+                        <th>Salary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Inventory System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Inventory <span>Master</span></h1>
+            <div class="stats-card">
+                Total Inventory Value: <span id="totalValue">$0.00</span>
+            </div>
+        </header>
+
+        <div class="controls">
+            <form id="productForm">
+                <input type="text" id="pid" placeholder="ID" required>
+                <input type="text" id="pname" placeholder="Name" required>
+                <select id="pcat">
+                    <option value="Electronics">Electronics</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Stationery">Stationery</option>
+                </select>
+                <input type="number" id="pprice" placeholder="Price" step="0.01" required>
+                <input type="number" id="pstock" placeholder="Stock" required>
+                <button type="submit">Add Item</button>
+            </form>
+            
+            <div class="search-box">
+                <input type="text" id="searchCategory" placeholder="Filter by category..." oninput="filterByCategory()">
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="inventoryBody"></tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

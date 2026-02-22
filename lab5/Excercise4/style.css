@@ -1,0 +1,20 @@
+:root { --danger: #ef4444; --success: #22c55e; --dark: #1e293b; }
+body { font-family: sans-serif; background: #f6d0eb; padding: 20px; color: var(--dark); }
+.container { max-width: 1100px; margin: 0 auto; }
+
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.stats-card { background: var(--dark); color: rgb(253, 251, 251); padding: 15px 25px; border-radius: 8px; font-size: 1.2rem; }
+
+.controls { background: rgb(251, 224, 224); padding: 20px; border-radius: 8px; display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
+form { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+
+table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+th, td { padding: 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+
+/* Low Stock Warning */
+.low-stock { background-color: #fee2e2; color: var(--danger); font-weight: bold; }
+.badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; }
+.badge-low { background: var(--danger); color: white; }
+
+button { cursor: pointer; border: none; border-radius: 4px; padding: 8px; }
+.btn-del { background: var(--danger); color: white; }
