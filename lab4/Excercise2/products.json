@@ -1,0 +1,12 @@
+[
+    {"id": 1, "name": "Mechanical Keyboard", "price": 895.99, "category": "Electronics"},
+    {"id": 2, "name": "Wireless Mouse", "price": 25.50, "category": "Electronics"},
+    {"id": 3, "name": "Coffee Mug", "price": 10.00, "category": "Home Decor"},
+    {"id": 4, "name": "Leather Journal", "price": 22.00, "category": "Stationery"},
+    {"id": 5, "name": "Noise Cancelling Headphones", "price": 199.00, "category": "Electronics"},
+    {"id": 6, "name": "Succulent Plant Pot", "price": 15.99, "category": "Home Decor"},
+    {"id": 7, "name": "USB-C Hub", "price": 45.00, "category": "Electronics"},
+    {"id": 8, "name": "Fountain Pen", "price": 35.00, "category": "Stationery"},
+    {"id": 9, "name": "Standing Desk", "price": 350.00, "category": "Furniture"},
+    {"id": 10, "name": "Ergonomic Chair", "price": 210.00, "category": "Furniture"}
+]

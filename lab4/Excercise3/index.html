@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System | AJAX CRUD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Student Management <span>System</span></h1>
+
+        <div class="card">
+            <h2 id="formTitle">Add New Student</h2>
+            <form id="studentForm">
+                <input type="hidden" id="editIndex">
+                <div class="form-grid">
+                    <input type="text" id="studentId" placeholder="Student ID (e.g. S101)" required>
+                    <input type="text" id="studentName" placeholder="Full Name" required>
+                    <input type="text" id="dept" placeholder="Department" required>
+                    <input type="number" id="marks" placeholder="Marks" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="saveBtn" class="btn-primary">Save Student</button>
+                    <button type="button" id="cancelBtn" class="btn-secondary" style="display:none">Cancel Edit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Dept</th>
+                        <th>Marks</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="studentBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+:root {
+    --primary: #2563eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --warning: #ca8a04;
+    --bg: #86f18b;
+}
+
+body { font-family: 'Segoe UI', sans-serif; background: var(--bg); padding: 2rem; color: #1e293b; }
+.container { max-width: 900px; margin: 0 auto; }
+h1 span { color: var(--primary); }
+
+.card { background: rgb(226, 241, 157); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+input { padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; outline-color: var(--primary); }
+
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th { text-align: left; padding: 1rem; border-bottom: 2px solid #e2e8f0; color: #022453; }
+td { padding: 1rem; border-bottom: 1px solid #f1f5f9; }
+
+.btn-primary { background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; }
+.btn-secondary { background: #64748b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; }
+
+.action-btn { padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px; color: white; }
+.edit-btn { background: var(--warning); }
+.delete-btn { background: var(--danger); }
